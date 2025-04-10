@@ -3,44 +3,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Selfie Capture</title>
-  <style>
-    body { font-family: Arial, sans-serif; text-align: center; margin-top: 30px; }
-    video, canvas { width: 80%; max-width: 300px; border-radius: 10px; margin-top: 10px; }
-    button { padding: 10px 20px; margin: 20px; font-size: 16px; }
-  </style>
 </head>
 <body>
-  <h1>Selfie Capture</h1>
-  <video id="video" autoplay playsinline></video>
-  <br />
-  <button id="snap">Capture Selfie</button>
-  <br />
-  <canvas id="canvas" style="display:none;"></canvas>
+  <h2>Selfie Capture</h2>
+  <video id="video" width="300" autoplay></video>
+  <br/>
+  <button id="capture">Capture</button>
+  <canvas id="canvas" width="300" height="225" style="display:none;"></canvas>
 
-  <script>
-    const video = document.getElementById('video');
-    const canvas = document.getElementById('canvas');
-    const context = canvas.getContext('2d');
-    const snap = document.getElementById('snap');
-
-    navigator.mediaDevices.getUserMedia({ video: true })
-      .then((stream) => {
-        video.srcObject = stream;
-      })
-      .catch((err) => {
-        console.error("Camera error:", err);
-      });
-
-    snap.addEventListener("click", () => {
-      canvas.width = video.videoWidth;
-      canvas.height = video.videoHeight;
-      context.drawImage(video, 0, 0, canvas.width, canvas.height);
-      const dataURL = canvas.toDataURL();
-      alert("Selfie captured! You can now use this data URL as needed.");
-      console.log(dataURL); // This can be sent to a server or email service
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
